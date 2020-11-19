@@ -5,6 +5,21 @@ namespace StraviaTECCore.Models
 {
     public partial class Actividad
     {
+      
+
+        public Actividad(int usuarioId, TimeSpan[] tiempo, double? distancia, DateTime? fecha, TimeSpan[] hora, DateTime? inicioRecorrido, DateTime? finrecorrido, int actividadId, Usuarios usuario)
+        {
+            UsuarioId = usuarioId;
+            Tiempo = tiempo;
+            Distancia = distancia;
+            Fecha = fecha;
+            Hora = hora;
+            InicioRecorrido = inicioRecorrido;
+            Finrecorrido = finrecorrido;
+            ActividadId = actividadId;
+            Usuario = usuario;
+        }
+
         public int UsuarioId { get; set; }
         public TimeSpan[] Tiempo { get; set; }
         public double? Distancia { get; set; }

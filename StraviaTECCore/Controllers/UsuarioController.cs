@@ -10,12 +10,10 @@ using System.Web.Http.Cors;
 namespace StraviaTECCore.Controllers
 
     // creacion de la ruta con la que el  webservice se expondra para ser consumido 
-    //Dependiendo del metodo de consumo se dirigira a cada una de las funciones 
+    //Dependiendo del metodo de consumo se dirigira a cada una de las funciones.
 {
     [Route("api/[controller]")]
     [ApiController]
-
-
     public class UsuarioController : ControllerBase
     {
 

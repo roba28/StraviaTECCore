@@ -9,7 +9,6 @@ namespace StraviaTECCore.Models
         {
             Gruposprivadosporcarrera = new HashSet<Gruposprivadosporcarrera>();
             InscripDepCarrera = new HashSet<InscripDepCarrera>();
-            Patrocinadores = new HashSet<Patrocinadores>();
             Patrocinadoresporcarrera = new HashSet<Patrocinadoresporcarrera>();
         }
 
@@ -29,7 +28,6 @@ namespace StraviaTECCore.Models
         public Usuarios Organizador { get; set; }
         public ICollection<Gruposprivadosporcarrera> Gruposprivadosporcarrera { get; set; }
         public ICollection<InscripDepCarrera> InscripDepCarrera { get; set; }
-        public ICollection<Patrocinadores> Patrocinadores { get; set; }
         public ICollection<Patrocinadoresporcarrera> Patrocinadoresporcarrera { get; set; }
     }
 }

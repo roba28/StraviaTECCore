@@ -352,14 +352,6 @@ namespace StraviaTECCore.Models
                 entity.ToTable("patrocinadores");
 
                 entity.Property(e => e.Id).HasColumnName("id");
-
-                entity.Property(e => e.CarreraId).HasColumnName("carreraID");
-
-                entity.HasOne(d => d.Carrera)
-                    .WithMany(p => p.Patrocinadores)
-                    .HasForeignKey(d => d.CarreraId)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("carreraID");
             });
 
             modelBuilder.Entity<Patrocinadoresporcarrera>(entity =>

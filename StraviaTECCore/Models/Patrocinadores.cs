@@ -11,11 +11,9 @@ namespace StraviaTECCore.Models
             Patrocinadoresporretos = new HashSet<Patrocinadoresporretos>();
         }
 
-        public int CarreraId { get; set; }
         public string Nombre { get; set; }
         public int Id { get; set; }
 
-        public GestionCarreras Carrera { get; set; }
         public ICollection<Patrocinadoresporcarrera> Patrocinadoresporcarrera { get; set; }
         public ICollection<Patrocinadoresporretos> Patrocinadoresporretos { get; set; }
     }

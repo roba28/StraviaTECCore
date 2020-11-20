@@ -8,7 +8,8 @@ namespace StraviaTECCore.Models
         
 
         public Actividad(int usuarioId, TimeSpan[] tiempo, double? distancia, DateTime? fecha, TimeSpan[] hora, DateTime? inicioRecorrido, DateTime? finrecorrido, int actividadId)
-        {
+        {//inicializa contructor
+
             UsuarioId = usuarioId;
             Tiempo = tiempo;
             Distancia = distancia;

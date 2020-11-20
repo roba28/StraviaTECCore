@@ -1,8 +1,11 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
+using StraviaTECCore.Models;
+using System.Web.Http.Cors;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -22,14 +25,9 @@ namespace StraviaTECCore.Controllers
             {
                 try
                 {// se inicializa el  objeto actividad
-                    Actividad actividad1 = new Actividad(nuevoAmigo.UsuarioId, nuevoAmigo.Tiempo, nuevoAmigo.Distancia, nuevoAmigo.Fecha, nuevoAmigo.Hora, nuevoAmigo.InicioRecorrido, nuevoAmigo.Finrecorrido, nuevoAmigo.ActividadId);//, actividad.Usuario);   
-                                                                                                                                                                                                                                // se inserta en la base de datos.
-
-
-                    db.Actividad.Add(actividad1);
+                    Amigos nAmigo = new Amigos(nuevoAmigo.Id, nuevoAmigo.UsuarioSeguido, nuevoAmigo.UsuarioSeguidor);
                     db.SaveChanges();
-
-                    return Ok();
+                    return Ok("El usuario ahora es tu amigo");
                 }
                 catch
                 {
@@ -37,5 +35,29 @@ namespace StraviaTECCore.Controllers
                 }
             }
         }
+
+        //obtener amigo
+
+        [HttpGet("find/{id}")]
+        public IActionResult getFriend(int id)
+        {
+            using (Straviatec_DBContext db = new Straviatec_DBContext())
+            {
+                try
+                {
+                    var list = db.Amigos.Find(id);
+
+                    return Ok(list);
+                }
+                catch (Exception e)
+                {
+                    return NotFound(e);
+                }
+
+
+            }
+
+        }
+
     }
 }

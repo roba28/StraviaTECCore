@@ -5,13 +5,12 @@ namespace StraviaTECCore.Models
 {
     public partial class Amigos
     {
-        public Amigos(int usuarioSeguidor, int usuarioSeguido, int id, Usuarios usuarioSeguidoNavigation, Usuarios usuarioSeguidorNavigation)
+        public Amigos(int usuarioSeguidor, int usuarioSeguido, int id)
         {
             UsuarioSeguidor = usuarioSeguidor;
             UsuarioSeguido = usuarioSeguido;
             Id = id;
-            UsuarioSeguidoNavigation = usuarioSeguidoNavigation;
-            UsuarioSeguidorNavigation = usuarioSeguidorNavigation;
+           
         }
 
         public int UsuarioSeguidor { get; set; }

@@ -38,7 +38,7 @@ namespace StraviaTECCore.Controllers
 
         //---------------------------------------------------------------------------------
         // Metodo utilizado para obtener un usuario en particular 
-    
+
         [HttpGet("find/{id}")]
         public IActionResult getoneuser(int id)
         {
@@ -69,7 +69,7 @@ namespace StraviaTECCore.Controllers
         [HttpDelete("del/{id}")]
         public ActionResult deleteuser(int id)
         {
-            
+
             using (Straviatec_DBContext db = new Straviatec_DBContext())
             {
 
@@ -94,12 +94,15 @@ namespace StraviaTECCore.Controllers
                     }
                 }
                 catch (Exception e) {
-                    return NotFound(e) ;
+                    return NotFound(e);
                 }
 
             }
 
         }
+
+
+   
 
 
 

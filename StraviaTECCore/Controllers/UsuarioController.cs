@@ -38,9 +38,32 @@ namespace StraviaTECCore.Controllers
             }
         }
 
+
+        [HttpGet("get/{name}")]
+        public IActionResult getuserbyname(string name)
+        {
+
+
+            using (Straviatec_DBContext db = new Straviatec_DBContext())
+            {
+                try
+                {
+                    var list = db.Usuarios.Where(d => d.Nombre.Contains(name)).ToList();
+                    return Ok(list);
+                }
+                catch (Exception e)
+                {
+                    return NotFound(e);
+                }
+            }
+        }
+
+
+
+
         //---------------------------------------------------------------------------------
         // Metodo utilizado para obtener un usuario en particular 
-    
+
         [HttpGet("find/{id}")]
         public IActionResult getoneuser(int id)
         {

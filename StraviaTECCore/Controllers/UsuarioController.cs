@@ -10,12 +10,10 @@ using System.Web.Http.Cors;
 namespace StraviaTECCore.Controllers
 
     // creacion de la ruta con la que el  webservice se expondra para ser consumido 
-    //Dependiendo del metodo de consumo se dirigira a cada una de las funciones 
+    //Dependiendo del metodo de consumo se dirigira a cada una de las funciones.
 {
     [Route("api/[controller]")]
     [ApiController]
-
-
     public class UsuarioController : ControllerBase
     {
 
@@ -29,6 +27,8 @@ namespace StraviaTECCore.Controllers
             {
                 try
                 {
+                  
+
                     var list = db.Usuarios.OrderByDescending(d => d.UsuarioId).ToList();
                     return Ok(list);
                 }
@@ -94,7 +94,7 @@ namespace StraviaTECCore.Controllers
         [HttpDelete("del/{id}")]
         public ActionResult deleteuser(int id)
         {
-            
+
             using (Straviatec_DBContext db = new Straviatec_DBContext())
             {
 
@@ -119,12 +119,15 @@ namespace StraviaTECCore.Controllers
                     }
                 }
                 catch (Exception e) {
-                    return NotFound(e) ;
+                    return NotFound(e);
                 }
 
             }
 
         }
+
+
+   
 
 
 

@@ -5,12 +5,10 @@ namespace StraviaTECCore.Models
 {
     public partial class Patrocinadores
     {
-        public Patrocinadores(int carreraId, string nombre, int id, GestionCarreras carrera)
+        public Patrocinadores()
         {
-            CarreraId = carreraId;
-            Nombre = nombre;
-            Id = id;
-            Carrera = carrera;
+            Patrocinadoresporcarrera = new HashSet<Patrocinadoresporcarrera>();
+            Patrocinadoresporretos = new HashSet<Patrocinadoresporretos>();
         }
 
         public int CarreraId { get; set; }
@@ -18,5 +16,7 @@ namespace StraviaTECCore.Models
         public int Id { get; set; }
 
         public GestionCarreras Carrera { get; set; }
+        public ICollection<Patrocinadoresporcarrera> Patrocinadoresporcarrera { get; set; }
+        public ICollection<Patrocinadoresporretos> Patrocinadoresporretos { get; set; }
     }
 }

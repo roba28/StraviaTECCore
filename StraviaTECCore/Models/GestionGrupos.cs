@@ -5,12 +5,10 @@ namespace StraviaTECCore.Models
 {
     public partial class GestionGrupos
     {
-        public GestionGrupos(int idgrupo, string nombre, int idorganizador, Usuarios idorganizadorNavigation)
+        public GestionGrupos()
         {
-            Idgrupo = idgrupo;
-            Nombre = nombre;
-            Idorganizador = idorganizador;
-            IdorganizadorNavigation = idorganizadorNavigation;
+            Gruposprivadosporcarrera = new HashSet<Gruposprivadosporcarrera>();
+            Gruposprivadosporreto = new HashSet<Gruposprivadosporreto>();
         }
 
         public int Idgrupo { get; set; }
@@ -18,5 +16,7 @@ namespace StraviaTECCore.Models
         public int Idorganizador { get; set; }
 
         public Usuarios IdorganizadorNavigation { get; set; }
+        public ICollection<Gruposprivadosporcarrera> Gruposprivadosporcarrera { get; set; }
+        public ICollection<Gruposprivadosporreto> Gruposprivadosporreto { get; set; }
     }
 }

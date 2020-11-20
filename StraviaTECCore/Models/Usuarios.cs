@@ -13,6 +13,8 @@ namespace StraviaTECCore.Models
             GestionCarreras = new HashSet<GestionCarreras>();
             GestionGrupos = new HashSet<GestionGrupos>();
             Gestionretos = new HashSet<Gestionretos>();
+            InscripDepCarrera = new HashSet<InscripDepCarrera>();
+            Inscripdepreto = new HashSet<Inscripdepreto>();
         }
 
         public Usuarios(int usuarioId, string nombre, string apellido1, string apellido2, string nacionalidad, DateTime? fechaNacimiento, string cuentaBancaria, int? edad, string usuario, string contrasena, string rol, byte[] foto)
@@ -53,5 +55,7 @@ namespace StraviaTECCore.Models
         public ICollection<GestionCarreras> GestionCarreras { get; set; }
         public ICollection<GestionGrupos> GestionGrupos { get; set; }
         public ICollection<Gestionretos> Gestionretos { get; set; }
+        public ICollection<InscripDepCarrera> InscripDepCarrera { get; set; }
+        public ICollection<Inscripdepreto> Inscripdepreto { get; set; }
     }
 }

@@ -5,7 +5,9 @@ namespace StraviaTECCore.Models
 {
     public partial class Actividad
     {
-        public Actividad(int usuarioId, double? distancia, DateTime? fecha, DateTime? inicioRecorrido, DateTime? finrecorrido, DateTime? hora, int actividadId, decimal? kilometros, decimal? duracion, string tipo)
+        public Actividad(int usuarioId, double? distancia, DateTime? fecha, DateTime? inicioRecorrido, DateTime? finrecorrido,
+            DateTime? hora, int actividadId, decimal? kilometros, decimal? duracion, string tipo, bool? iscompletitudreto,
+            bool? iscompletitudcarrera, Usuarios usuario)
         {
             UsuarioId = usuarioId;
             Distancia = distancia;
@@ -17,6 +19,9 @@ namespace StraviaTECCore.Models
             Kilometros = kilometros;
             Duracion = duracion;
             Tipo = tipo;
+            Iscompletitudreto = iscompletitudreto;
+            Iscompletitudcarrera = iscompletitudcarrera;
+            Usuario = usuario;
         }
 
         public int UsuarioId { get; set; }

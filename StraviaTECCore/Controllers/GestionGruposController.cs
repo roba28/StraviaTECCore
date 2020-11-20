@@ -12,12 +12,11 @@ namespace StraviaTECCore.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class GestionCarrerasController : ControllerBase
+    public class GestionGruposController : ControllerBase
     {
-
-// retirna  todas la carreras registradas
+        // devuelve los grupos  a los cuales se pueden unnir enla carreras
         [HttpGet]
-        public IActionResult getCarreras()
+        public IActionResult getGrupos()
         {
 
 
@@ -27,7 +26,7 @@ namespace StraviaTECCore.Controllers
                 {
 
 
-                    var list = db.GestionCarreras.OrderByDescending(d => d.CarreraId).ToList();
+                    var list = db.GestionGrupos.OrderByDescending(d => d.Idgrupo).ToList();
                     return Ok(list);
                 }
                 catch (Exception e)
@@ -40,7 +39,7 @@ namespace StraviaTECCore.Controllers
         // crear una carrera
         [HttpPost]
 
-        public IActionResult addCarrera(GestionCarreras nuevaCarrera)
+        public IActionResult addGrupo(GestionGrupos grupo)
         {
 
             using (Straviatec_DBContext db = new Straviatec_DBContext())
@@ -48,12 +47,8 @@ namespace StraviaTECCore.Controllers
             {
                 try
                 {
-                    GestionCarreras gc = new GestionCarreras(nuevaCarrera.CarreraId, nuevaCarrera.OrganizadorId, nuevaCarrera.Costo, nuevaCarrera.FechaCarrera,
-                        nuevaCarrera.Nombre, nuevaCarrera.InicioRecorrido, nuevaCarrera.FinRecorrido, nuevaCarrera.CarreraId, nuevaCarrera.Tipoactividad,
-                        nuevaCarrera.Isprivado, nuevaCarrera.Cuentabancaria, nuevaCarrera.Categoria, nuevaCarrera.Organizador, nuevaCarrera.Gruposprivadosporcarrera,
-                        nuevaCarrera.InscripDepCarrera,nuevaCarrera.Patrocinadores, nuevaCarrera.Patrocinadoresporcarrera  );
-
-                    db.GestionCarreras.Add(gc);
+                    GestionGrupos esGrup = new GestionGrupos(grupo.Idgrupo, grupo.Nombre, grupo.Idgrupo, grupo.IdorganizadorNavigation, grupo.Gruposprivadosporcarrera, grupo.Gruposprivadosporreto);
+                    db.GestionGrupos.Add(esGrup);
                     db.SaveChanges();
 
                     return Ok();
@@ -68,9 +63,9 @@ namespace StraviaTECCore.Controllers
 
         }
         [HttpPut]
-        public IActionResult Edituser(GestionCarreras carreraUpdate)
+        public IActionResult Edituser(GestionGrupos grupo)
         {
-            int id = carreraUpdate.CarreraId;
+            int id = grupo.Idgrupo;
 
             using (Straviatec_DBContext db = new Straviatec_DBContext())
 
@@ -84,14 +79,11 @@ namespace StraviaTECCore.Controllers
                     }
                     else
                     {
-                        GestionCarreras gc = new GestionCarreras(carreraUpdate.CarreraId, carreraUpdate.OrganizadorId, carreraUpdate.Costo, carreraUpdate.FechaCarrera,
-                        carreraUpdate.Nombre, carreraUpdate.InicioRecorrido, carreraUpdate.FinRecorrido, carreraUpdate.CarreraId, carreraUpdate.Tipoactividad,
-                        carreraUpdate.Isprivado, carreraUpdate.Cuentabancaria, carreraUpdate.Categoria, carreraUpdate.Organizador, carreraUpdate.Gruposprivadosporcarrera,
-                        carreraUpdate.InscripDepCarrera, carreraUpdate.Patrocinadores, carreraUpdate.Patrocinadoresporcarrera);
+                       GestionGrupos esGrup = new GestionGrupos(grupo.Idgrupo, grupo.Nombre, grupo.Idgrupo, grupo.IdorganizadorNavigation, grupo.Gruposprivadosporcarrera, grupo.Gruposprivadosporreto);
+                    db.GestionGrupos.Add(esGrup);
+                    db.SaveChanges();
 
-                        db.GestionCarreras.Add(gc);
-                        db.SaveChanges();
-                        
+
 
                         return Ok();
                     }
@@ -118,7 +110,7 @@ namespace StraviaTECCore.Controllers
                 try
                 {
 
-                    if (db.GestionCarreras.Find(id) == null)
+                    if (db.GestionGrupos.Find(id) == null)
                     {
 
                         return NotFound();
@@ -128,8 +120,8 @@ namespace StraviaTECCore.Controllers
 
                     else
                     {
-                        var list = db.GestionCarreras.Find(id);
-                        db.GestionCarreras.Remove(list);
+                        var list = db.GestionGrupos.Find(id);
+                        db.GestionGrupos.Remove(list);
                         db.SaveChanges();
 
                         return Ok();
@@ -155,7 +147,7 @@ namespace StraviaTECCore.Controllers
             {
                 try
                 {
-                    var list = db.GestionCarreras.Where(d => d.Nombre.Contains(name)).ToList();
+                    var list = db.GestionGrupos.Where(d => d.Nombre.Contains(name)).ToList();
                     return Ok(list);
                 }
                 catch (Exception e)
@@ -168,9 +160,4 @@ namespace StraviaTECCore.Controllers
 
 
     }
-
 }
-
-
-
-

@@ -12,12 +12,12 @@ namespace StraviaTECCore.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class GestionCarrerasController : ControllerBase
+    public class ValuesController : ControllerBase
     {
 
-// retirna  todas la carreras registradas
+
         [HttpGet]
-        public IActionResult getCarreras()
+        public IActionResult getReto()
         {
 
 
@@ -27,7 +27,7 @@ namespace StraviaTECCore.Controllers
                 {
 
 
-                    var list = db.GestionCarreras.OrderByDescending(d => d.CarreraId).ToList();
+                    var list = db.Gestionretos.OrderByDescending(d => d.Retoid).ToList();
                     return Ok(list);
                 }
                 catch (Exception e)
@@ -37,10 +37,10 @@ namespace StraviaTECCore.Controllers
             }
         }
 
-        // crear una carrera
+       
         [HttpPost]
 
-        public IActionResult addCarrera(GestionCarreras nuevaCarrera)
+        public IActionResult addCarrera(Gestionretos reto)
         {
 
             using (Straviatec_DBContext db = new Straviatec_DBContext())
@@ -48,12 +48,10 @@ namespace StraviaTECCore.Controllers
             {
                 try
                 {
-                    GestionCarreras gc = new GestionCarreras(nuevaCarrera.CarreraId, nuevaCarrera.OrganizadorId, nuevaCarrera.Costo, nuevaCarrera.FechaCarrera,
-                        nuevaCarrera.Nombre, nuevaCarrera.InicioRecorrido, nuevaCarrera.FinRecorrido, nuevaCarrera.CarreraId, nuevaCarrera.Tipoactividad,
-                        nuevaCarrera.Isprivado, nuevaCarrera.Cuentabancaria, nuevaCarrera.Categoria, nuevaCarrera.Organizador, nuevaCarrera.Gruposprivadosporcarrera,
-                        nuevaCarrera.InscripDepCarrera,nuevaCarrera.Patrocinadores, nuevaCarrera.Patrocinadoresporcarrera  );
-
-                    db.GestionCarreras.Add(gc);
+                   
+                    
+                    Gestionretos nuevoReto = new Gestionretos(reto.OrganizadorId, reto.CategoriaId, reto.Nombre, reto.Periodo, reto.Retoid, reto.Kmrecorridos, reto.Metrosascendidos,reto.Isfondo, reto.Isaltitud, reto.Isprivado, reto.Categoria, reto.Organizador);
+                    db.Gestionretos.Add(nuevoReto);
                     db.SaveChanges();
 
                     return Ok();
@@ -68,9 +66,9 @@ namespace StraviaTECCore.Controllers
 
         }
         [HttpPut]
-        public IActionResult Edituser(GestionCarreras carreraUpdate)
+        public IActionResult EditReto(Gestionretos retoUpdate)
         {
-            int id = carreraUpdate.CarreraId;
+            int id = retoUpdate.Retoid;
 
             using (Straviatec_DBContext db = new Straviatec_DBContext())
 
@@ -84,14 +82,11 @@ namespace StraviaTECCore.Controllers
                     }
                     else
                     {
-                        GestionCarreras gc = new GestionCarreras(carreraUpdate.CarreraId, carreraUpdate.OrganizadorId, carreraUpdate.Costo, carreraUpdate.FechaCarrera,
-                        carreraUpdate.Nombre, carreraUpdate.InicioRecorrido, carreraUpdate.FinRecorrido, carreraUpdate.CarreraId, carreraUpdate.Tipoactividad,
-                        carreraUpdate.Isprivado, carreraUpdate.Cuentabancaria, carreraUpdate.Categoria, carreraUpdate.Organizador, carreraUpdate.Gruposprivadosporcarrera,
-                        carreraUpdate.InscripDepCarrera, carreraUpdate.Patrocinadores, carreraUpdate.Patrocinadoresporcarrera);
-
-                        db.GestionCarreras.Add(gc);
+                        Gestionretos nuevoReto = new Gestionretos(retoUpdate.OrganizadorId, retoUpdate.CategoriaId, retoUpdate.Nombre, retoUpdate.Periodo,
+                            retoUpdate.Retoid, retoUpdate.Kmrecorridos, retoUpdate.Metrosascendidos, retoUpdate.Isfondo, retoUpdate.Isaltitud, retoUpdate.Isprivado, retoUpdate.Categoria, retoUpdate.Organizador);
+                        db.Gestionretos.Add(nuevoReto);
                         db.SaveChanges();
-                        
+
 
                         return Ok();
                     }
@@ -109,7 +104,7 @@ namespace StraviaTECCore.Controllers
 
         //_______________________________________
         [HttpDelete("del/{id}")]
-        public ActionResult deletCarrera(int id)
+        public ActionResult deletReto(int id)
         {
 
             using (Straviatec_DBContext db = new Straviatec_DBContext())
@@ -118,7 +113,7 @@ namespace StraviaTECCore.Controllers
                 try
                 {
 
-                    if (db.GestionCarreras.Find(id) == null)
+                    if (db.Gestionretos.Find(id) == null)
                     {
 
                         return NotFound();
@@ -128,8 +123,8 @@ namespace StraviaTECCore.Controllers
 
                     else
                     {
-                        var list = db.GestionCarreras.Find(id);
-                        db.GestionCarreras.Remove(list);
+                        var list = db.Gestionretos.Find(id);
+                        db.Gestionretos.Remove(list);
                         db.SaveChanges();
 
                         return Ok();
@@ -147,7 +142,7 @@ namespace StraviaTECCore.Controllers
         // obtiene  carrera por el nombre 
 
         [HttpGet("get/{name}")]
-        public IActionResult getRacebyname(string name)
+        public IActionResult getRetoname(string name)
         {
 
 
@@ -155,7 +150,7 @@ namespace StraviaTECCore.Controllers
             {
                 try
                 {
-                    var list = db.GestionCarreras.Where(d => d.Nombre.Contains(name)).ToList();
+                    var list = db.Gestionretos.Where(d => d.Nombre.Contains(name)).ToList();
                     return Ok(list);
                 }
                 catch (Exception e)
@@ -172,5 +167,4 @@ namespace StraviaTECCore.Controllers
 }
 
 
-
-
+    

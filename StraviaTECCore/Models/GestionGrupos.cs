@@ -11,6 +11,16 @@ namespace StraviaTECCore.Models
             Gruposprivadosporreto = new HashSet<Gruposprivadosporreto>();
         }
 
+        public GestionGrupos(int idgrupo, string nombre, int idorganizador, Usuarios idorganizadorNavigation, ICollection<Gruposprivadosporcarrera> gruposprivadosporcarrera, ICollection<Gruposprivadosporreto> gruposprivadosporreto)
+        {
+            Idgrupo = idgrupo;
+            Nombre = nombre;
+            Idorganizador = idorganizador;
+            IdorganizadorNavigation = idorganizadorNavigation;
+            Gruposprivadosporcarrera = gruposprivadosporcarrera;
+            Gruposprivadosporreto = gruposprivadosporreto;
+        }
+
         public int Idgrupo { get; set; }
         public string Nombre { get; set; }
         public int Idorganizador { get; set; }

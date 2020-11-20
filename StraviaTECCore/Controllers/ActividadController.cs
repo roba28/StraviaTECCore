@@ -30,7 +30,8 @@ namespace StraviaTECCore.Controllers
                 try
                 {// se inicializa el  objeto actividad
 
-                   Actividad actividad1= new Actividad(actividad.UsuarioId, actividad.Distancia,actividad.            )
+                    Actividad actividad1 = new Actividad(actividad.UsuarioId, actividad.Distancia, actividad.Fecha, actividad.InicioRecorrido, actividad.Finrecorrido, actividad.Hora, actividad.ActividadId, actividad.Kilometros, actividad.Duracion, actividad.Tipo, actividad.Iscompletitudcarrera, actividad.Iscompletitudcarrera, actividad.Usuario);
+                    
                     db.Actividad.Add(actividad1);
                     db.SaveChanges();
 

@@ -13,6 +13,24 @@ namespace StraviaTECCore.Models
             Patrocinadoresporretos = new HashSet<Patrocinadoresporretos>();
         }
 
+        public Gestionretos(int organizadorId, int categoriaId, string nombre, DateTime? periodo,
+            int retoid, decimal? kmrecorridos, decimal? metrosascendidos, bool? isfondo, bool? isaltitud, 
+            bool? isprivado, Categoria categoria, Usuarios organizador)
+        {
+            OrganizadorId = organizadorId;
+            CategoriaId = categoriaId;
+            Nombre = nombre;
+            Periodo = periodo;
+            Retoid = retoid;
+            Kmrecorridos = kmrecorridos;
+            Metrosascendidos = metrosascendidos;
+            Isfondo = isfondo;
+            Isaltitud = isaltitud;
+            Isprivado = isprivado;
+            Categoria = categoria;
+            Organizador = organizador;
+        }
+
         public int OrganizadorId { get; set; }
         public int CategoriaId { get; set; }
         public string Nombre { get; set; }

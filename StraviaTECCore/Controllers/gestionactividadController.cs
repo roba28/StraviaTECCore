@@ -14,7 +14,7 @@ namespace StraviaTECCore.Controllers
     public class gestionactividadController : ControllerBase
     {
 
-        [HttpGet]
+       
         [HttpGet]
         public IActionResult getgestionactividad()
         {
@@ -24,7 +24,7 @@ namespace StraviaTECCore.Controllers
             {
                 try
                 {
-                    var list = db.Gestionactividad.OrderByDescending(d => d.Gestion).ToList();
+                    var list = db.Gestionactividad.OrderByDescending(d => d.ActividadId).ToList();
                     return Ok(list);
                 }
                 catch (Exception e)

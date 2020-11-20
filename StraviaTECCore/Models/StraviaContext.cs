@@ -49,23 +49,18 @@ namespace StraviaTECCore.Models
 
             modelBuilder.Entity<Gestionactividad>(entity =>
             {
-                entity.HasKey(e => e.GestionId);
+                entity.HasKey(e => e.ActividadId);
 
                 entity.ToTable("gestionactividad");
 
-                entity.Property(e => e.GestionId).HasColumnName("gestionID");
+                entity.Property(e => e.ActividadId).HasColumnName("ActividadId");
 
                 entity.Property(e => e.Clasificacion).HasColumnName("clasificacion");
 
                 entity.Property(e => e.Tipo).HasColumnName("tipo");
 
-                entity.HasOne(d => d.Gestion)
-                    .WithOne(p => p.Gestionactividad)
-                    .HasForeignKey<Gestionactividad>(d => d.GestionId)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("CarreraID");
-            });
 
+            });
             modelBuilder.Entity<GestionCarreras>(entity =>
             {
                 entity.HasKey(e => e.CarreraId);
@@ -125,11 +120,11 @@ namespace StraviaTECCore.Models
 
             modelBuilder.Entity<Gestionretos>(entity =>
             {
-                entity.HasKey(e => e.RetoId);
+                entity.HasKey(e => e.Retoid);
 
                 entity.ToTable("gestionretos");
 
-                entity.Property(e => e.RetoId).HasColumnName("retoID");
+                entity.Property(e => e.Retoid).HasColumnName("retoID");
 
                
 

@@ -16,6 +16,7 @@ namespace StraviaTECCore.Models
         }
 
         public virtual DbSet<Actividad> Actividad { get; set; }
+        public virtual DbSet<Actividadesporreto> Actividadesporreto { get; set; }
         public virtual DbSet<Amigos> Amigos { get; set; }
         public virtual DbSet<Categoria> Categoria { get; set; }
         public virtual DbSet<Contactenos> Contactenos { get; set; }
@@ -23,7 +24,13 @@ namespace StraviaTECCore.Models
         public virtual DbSet<GestionCarreras> GestionCarreras { get; set; }
         public virtual DbSet<GestionGrupos> GestionGrupos { get; set; }
         public virtual DbSet<Gestionretos> Gestionretos { get; set; }
+        public virtual DbSet<Gruposprivadosporcarrera> Gruposprivadosporcarrera { get; set; }
+        public virtual DbSet<Gruposprivadosporreto> Gruposprivadosporreto { get; set; }
+        public virtual DbSet<InscripDepCarrera> InscripDepCarrera { get; set; }
+        public virtual DbSet<Inscripdepreto> Inscripdepreto { get; set; }
         public virtual DbSet<Patrocinadores> Patrocinadores { get; set; }
+        public virtual DbSet<Patrocinadoresporcarrera> Patrocinadoresporcarrera { get; set; }
+        public virtual DbSet<Patrocinadoresporretos> Patrocinadoresporretos { get; set; }
         public virtual DbSet<Usuarios> Usuarios { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
@@ -47,25 +54,25 @@ namespace StraviaTECCore.Models
 
                 entity.Property(e => e.Distancia).HasColumnName("distancia");
 
+                entity.Property(e => e.Duracion).HasColumnName("duracion");
+
                 entity.Property(e => e.Fecha)
                     .HasColumnName("fecha")
                     .HasColumnType("date");
 
-                entity.Property(e => e.Finrecorrido)
-                    .HasColumnName("finrecorrido")
-                    .HasColumnType("timestamp with time zone");
+                entity.Property(e => e.Finrecorrido).HasColumnName("finrecorrido");
 
-                entity.Property(e => e.Hora)
-                    .HasColumnName("hora")
-                    .HasColumnType("time without time zone[]");
+                entity.Property(e => e.Hora).HasColumnName("hora");
 
-                entity.Property(e => e.InicioRecorrido)
-                    .HasColumnName("inicioRecorrido")
-                    .HasColumnType("timestamp with time zone");
+                entity.Property(e => e.InicioRecorrido).HasColumnName("inicioRecorrido");
 
-                entity.Property(e => e.Tiempo)
-                    .HasColumnName("tiempo")
-                    .HasColumnType("time without time zone[]");
+                entity.Property(e => e.Iscompletitudcarrera).HasColumnName("iscompletitudcarrera");
+
+                entity.Property(e => e.Iscompletitudreto).HasColumnName("iscompletitudreto");
+
+                entity.Property(e => e.Kilometros).HasColumnName("kilometros");
+
+                entity.Property(e => e.Tipo).HasColumnName("tipo");
 
                 entity.Property(e => e.UsuarioId).HasColumnName("usuarioID");
 
@@ -73,6 +80,27 @@ namespace StraviaTECCore.Models
                     .WithMany(p => p.Actividad)
                     .HasForeignKey(d => d.UsuarioId)
                     .HasConstraintName("usuarioID");
+            });
+
+            modelBuilder.Entity<Actividadesporreto>(entity =>
+            {
+                entity.ToTable("actividadesporreto");
+
+                entity.Property(e => e.Id).HasColumnName("id");
+
+                entity.Property(e => e.Actividadid).HasColumnName("actividadid");
+
+                entity.Property(e => e.Retoid).HasColumnName("retoid");
+
+                entity.HasOne(d => d.Actividad)
+                    .WithMany(p => p.Actividadesporreto)
+                    .HasForeignKey(d => d.Actividadid)
+                    .HasConstraintName("actividadID");
+
+                entity.HasOne(d => d.Reto)
+                    .WithMany(p => p.Actividadesporreto)
+                    .HasForeignKey(d => d.Retoid)
+                    .HasConstraintName("retoid");
             });
 
             modelBuilder.Entity<Amigos>(entity =>
@@ -98,6 +126,8 @@ namespace StraviaTECCore.Models
 
                 entity.Property(e => e.CategoriaId).HasColumnName("categoriaID");
 
+                entity.Property(e => e.Nombre).HasColumnName("nombre");
+
                 entity.Property(e => e.Tipo).HasColumnName("tipo");
             });
 
@@ -118,21 +148,21 @@ namespace StraviaTECCore.Models
 
             modelBuilder.Entity<Gestionactividad>(entity =>
             {
-                entity.HasKey(e => e.GestionId);
+                entity.HasKey(e => e.ActividadId);
 
                 entity.ToTable("gestionactividad");
 
-                entity.Property(e => e.GestionId).HasColumnName("gestionID");
+                entity.Property(e => e.ActividadId).HasColumnName("actividadID");
 
                 entity.Property(e => e.Clasificacion).HasColumnName("clasificacion");
 
-                entity.Property(e => e.Tipo).HasColumnName("tipo");
+                entity.Property(e => e.Duracion).HasColumnName("duracion");
 
-                entity.HasOne(d => d.Gestion)
-                    .WithOne(p => p.Gestionactividad)
-                    .HasForeignKey<Gestionactividad>(d => d.GestionId)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("CarreraID");
+                entity.Property(e => e.Fecha).HasColumnName("fecha");
+
+                entity.Property(e => e.Kilometros).HasColumnName("kilometros");
+
+                entity.Property(e => e.Tipo).HasColumnName("tipo");
             });
 
             modelBuilder.Entity<GestionCarreras>(entity =>
@@ -147,21 +177,23 @@ namespace StraviaTECCore.Models
 
                 entity.Property(e => e.Costo).HasColumnName("costo");
 
+                entity.Property(e => e.Cuentabancaria).HasColumnName("cuentabancaria");
+
                 entity.Property(e => e.FechaCarrera)
                     .HasColumnName("fechaCarrera")
                     .HasColumnType("date");
 
-                entity.Property(e => e.FinRecorrido)
-                    .HasColumnName("finRecorrido")
-                    .HasColumnType("timestamp with time zone");
+                entity.Property(e => e.FinRecorrido).HasColumnName("finRecorrido");
 
-                entity.Property(e => e.InicioRecorrido)
-                    .HasColumnName("inicioRecorrido")
-                    .HasColumnType("timestamp with time zone");
+                entity.Property(e => e.InicioRecorrido).HasColumnName("inicioRecorrido");
+
+                entity.Property(e => e.Isprivado).HasColumnName("isprivado");
 
                 entity.Property(e => e.Nombre).HasColumnName("nombre");
 
                 entity.Property(e => e.OrganizadorId).HasColumnName("organizadorID");
+
+                entity.Property(e => e.Tipoactividad).HasColumnName("tipoactividad");
 
                 entity.HasOne(d => d.Categoria)
                     .WithMany(p => p.GestionCarreras)
@@ -194,13 +226,23 @@ namespace StraviaTECCore.Models
 
             modelBuilder.Entity<Gestionretos>(entity =>
             {
-                entity.HasKey(e => e.RetoId);
+                entity.HasKey(e => e.Retoid);
 
                 entity.ToTable("gestionretos");
 
-                entity.Property(e => e.RetoId).HasColumnName("retoID");
+                entity.Property(e => e.Retoid).HasColumnName("retoid");
 
                 entity.Property(e => e.CategoriaId).HasColumnName("categoriaID");
+
+                entity.Property(e => e.Isaltitud).HasColumnName("isaltitud");
+
+                entity.Property(e => e.Isfondo).HasColumnName("isfondo");
+
+                entity.Property(e => e.Isprivado).HasColumnName("isprivado");
+
+                entity.Property(e => e.Kmrecorridos).HasColumnName("kmrecorridos");
+
+                entity.Property(e => e.Metrosascendidos).HasColumnName("metrosascendidos");
 
                 entity.Property(e => e.Nombre).HasColumnName("nombre ");
 
@@ -221,6 +263,90 @@ namespace StraviaTECCore.Models
                     .HasConstraintName("organizadorID");
             });
 
+            modelBuilder.Entity<Gruposprivadosporcarrera>(entity =>
+            {
+                entity.ToTable("gruposprivadosporcarrera");
+
+                entity.Property(e => e.Id).HasColumnName("id");
+
+                entity.Property(e => e.Carreraid).HasColumnName("carreraid");
+
+                entity.Property(e => e.Gestiongruposid).HasColumnName("gestiongruposid");
+
+                entity.HasOne(d => d.Carrera)
+                    .WithMany(p => p.Gruposprivadosporcarrera)
+                    .HasForeignKey(d => d.Carreraid)
+                    .HasConstraintName("carreraid");
+
+                entity.HasOne(d => d.Gestiongrupos)
+                    .WithMany(p => p.Gruposprivadosporcarrera)
+                    .HasForeignKey(d => d.Gestiongruposid)
+                    .HasConstraintName("gestiongruposid");
+            });
+
+            modelBuilder.Entity<Gruposprivadosporreto>(entity =>
+            {
+                entity.ToTable("gruposprivadosporreto");
+
+                entity.Property(e => e.Id).HasColumnName("id");
+
+                entity.Property(e => e.Grupoid).HasColumnName("grupoid");
+
+                entity.Property(e => e.Retoid).HasColumnName("retoid");
+
+                entity.HasOne(d => d.Grupo)
+                    .WithMany(p => p.Gruposprivadosporreto)
+                    .HasForeignKey(d => d.Grupoid)
+                    .HasConstraintName("grupoid");
+
+                entity.HasOne(d => d.Reto)
+                    .WithMany(p => p.Gruposprivadosporreto)
+                    .HasForeignKey(d => d.Retoid)
+                    .HasConstraintName("retoid");
+            });
+
+            modelBuilder.Entity<InscripDepCarrera>(entity =>
+            {
+                entity.ToTable("inscripDepCarrera");
+
+                entity.Property(e => e.Id).HasColumnName("id");
+
+                entity.Property(e => e.Carreraid).HasColumnName("carreraid");
+
+                entity.Property(e => e.Usurioid).HasColumnName("usurioid");
+
+                entity.HasOne(d => d.Carrera)
+                    .WithMany(p => p.InscripDepCarrera)
+                    .HasForeignKey(d => d.Carreraid)
+                    .HasConstraintName("carreraid");
+
+                entity.HasOne(d => d.Usurio)
+                    .WithMany(p => p.InscripDepCarrera)
+                    .HasForeignKey(d => d.Usurioid)
+                    .HasConstraintName("usuarioid");
+            });
+
+            modelBuilder.Entity<Inscripdepreto>(entity =>
+            {
+                entity.ToTable("inscripdepreto");
+
+                entity.Property(e => e.Id).HasColumnName("id");
+
+                entity.Property(e => e.Retoid).HasColumnName("retoid");
+
+                entity.Property(e => e.Usuarioid).HasColumnName("usuarioid");
+
+                entity.HasOne(d => d.Reto)
+                    .WithMany(p => p.Inscripdepreto)
+                    .HasForeignKey(d => d.Retoid)
+                    .HasConstraintName("retoid");
+
+                entity.HasOne(d => d.Usuario)
+                    .WithMany(p => p.Inscripdepreto)
+                    .HasForeignKey(d => d.Usuarioid)
+                    .HasConstraintName("usuarioid");
+            });
+
             modelBuilder.Entity<Patrocinadores>(entity =>
             {
                 entity.ToTable("patrocinadores");
@@ -234,6 +360,48 @@ namespace StraviaTECCore.Models
                     .HasForeignKey(d => d.CarreraId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("carreraID");
+            });
+
+            modelBuilder.Entity<Patrocinadoresporcarrera>(entity =>
+            {
+                entity.ToTable("patrocinadoresporcarrera");
+
+                entity.Property(e => e.Id).HasColumnName("id");
+
+                entity.Property(e => e.Carreraid).HasColumnName("carreraid");
+
+                entity.Property(e => e.Patrocinadorid).HasColumnName("patrocinadorid");
+
+                entity.HasOne(d => d.Carrera)
+                    .WithMany(p => p.Patrocinadoresporcarrera)
+                    .HasForeignKey(d => d.Carreraid)
+                    .HasConstraintName("carreraid");
+
+                entity.HasOne(d => d.Patrocinador)
+                    .WithMany(p => p.Patrocinadoresporcarrera)
+                    .HasForeignKey(d => d.Patrocinadorid)
+                    .HasConstraintName("patrpcinadorid");
+            });
+
+            modelBuilder.Entity<Patrocinadoresporretos>(entity =>
+            {
+                entity.ToTable("patrocinadoresporretos");
+
+                entity.Property(e => e.Id).HasColumnName("id");
+
+                entity.Property(e => e.Gestionretoid).HasColumnName("gestionretoid");
+
+                entity.Property(e => e.Patrocinadorid).HasColumnName("patrocinadorid");
+
+                entity.HasOne(d => d.Gestionreto)
+                    .WithMany(p => p.Patrocinadoresporretos)
+                    .HasForeignKey(d => d.Gestionretoid)
+                    .HasConstraintName("gestionretoid");
+
+                entity.HasOne(d => d.Patrocinador)
+                    .WithMany(p => p.Patrocinadoresporretos)
+                    .HasForeignKey(d => d.Patrocinadorid)
+                    .HasConstraintName("patrocinadorid");
             });
 
             modelBuilder.Entity<Usuarios>(entity =>

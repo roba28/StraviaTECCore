@@ -5,15 +5,10 @@ namespace StraviaTECCore.Models
 {
     public partial class Contactenos
     {
-        public Contactenos(string nombre, string apellidos, string[] telefono, string email, string razon, int id)
+        public Contactenos()
         {
-            Nombre = nombre;
-            Apellidos = apellidos;
-            Telefono = telefono;
-            Email = email;
-            Razon = razon;
-            Id = id;
         }
+
 
         public string Nombre { get; set; }
         public string Apellidos { get; set; }

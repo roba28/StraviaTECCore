@@ -5,20 +5,18 @@ namespace StraviaTECCore.Models
 {
     public partial class Actividad
     {
-        
-
-        public Actividad(int usuarioId, TimeSpan[] tiempo, double? distancia, DateTime? fecha, TimeSpan[] hora, DateTime? inicioRecorrido, DateTime? finrecorrido, int actividadId)
-        {//inicializa contructor
-
+        public Actividad(int usuarioId, double? distancia, DateTime? fecha, DateTime? inicioRecorrido, DateTime? finrecorrido, DateTime? hora, int actividadId, decimal? kilometros, decimal? duracion, string tipo)
+        {
             UsuarioId = usuarioId;
-            Tiempo = tiempo;
             Distancia = distancia;
             Fecha = fecha;
-            Hora = hora;
             InicioRecorrido = inicioRecorrido;
             Finrecorrido = finrecorrido;
+            Hora = hora;
             ActividadId = actividadId;
-            //Usuario = usuario;
+            Kilometros = kilometros;
+            Duracion = duracion;
+            Tipo = tipo;
         }
 
         public int UsuarioId { get; set; }

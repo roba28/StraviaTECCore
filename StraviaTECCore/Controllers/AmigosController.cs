@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,18 +17,26 @@ namespace StraviaTECCore.Controllers
     public class AmigosController : ControllerBase
     {
 
-        [HttpPost]
 
+        [HttpPost]
         public IActionResult addFriend(Models.Amigos nuevoAmigo)
         {
 
             using (Straviatec_DBContext db = new Straviatec_DBContext())
             {
                 try
-                {// se inicializa el  objeto actividad
-                    Amigos nAmigo = new Amigos(nuevoAmigo.Id, nuevoAmigo.UsuarioSeguido, nuevoAmigo.UsuarioSeguidor);
+                {
+
+                    if (nuevoAmigo == null ) {
+                        return NotFound();
+                    }
+                    // var list = db.Usuarios.OrderByDescending(d => d.UsuarioId).ToList();
+
+                   
+
+                    Amigos nAmigo = new Amigos( nuevoAmigo.UsuarioSeguido, nuevoAmigo.UsuarioSeguidor, nuevoAmigo.i );
                     db.SaveChanges();
-                    return Ok("El usuario ahora es tu amigo");
+                    return Ok("se ha registrado");
                 }
                 catch
                 {
@@ -36,18 +45,36 @@ namespace StraviaTECCore.Controllers
             }
         }
 
-        //obtener amigo
+
+
+        /// nuevo metodo de  añadir amigos 
+        /// 
+
+
+        //obtener amigo por el id
 
         [HttpGet("find/{id}")]
-        public IActionResult getFriend(int id)
+        public IActionResult getFriend(int usuario)
         {
             using (Straviatec_DBContext db = new Straviatec_DBContext())
             {
                 try
                 {
-                    var list = db.Amigos.Find(id);
+                    List <Usuarios> amigos = new List<Usuarios>();
+                    var search = db.Amigos.AsNoTracking().Where(u => u.Id ==usuario).ToList();
 
-                    return Ok(list);
+                    foreach (var amigo in search)
+                    {
+
+                       
+                        var amigoUser =  db.Usuarios.FirstOrDefaultAsync(p => p.UsuarioId == amigo.Id);
+
+                        if (amigoUser == null) continue;
+
+                        amigos.Add(amigoUser);
+                    }
+
+                    return Ok(amigos);
                 }
                 catch (Exception e)
                 {

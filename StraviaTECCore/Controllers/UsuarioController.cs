@@ -27,6 +27,8 @@ namespace StraviaTECCore.Controllers
             {
                 try
                 {
+                  
+
                     var list = db.Usuarios.OrderByDescending(d => d.UsuarioId).ToList();
                     return Ok(list);
                 }

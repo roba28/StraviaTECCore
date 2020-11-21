@@ -11,13 +11,6 @@ namespace StraviaTECCore.Models
             Gestionretos = new HashSet<Gestionretos>();
         }
 
-        public Categoria(int categoriaId, string tipo, string nombre)
-        {
-            CategoriaId = categoriaId;
-            Tipo = tipo;
-            Nombre = nombre;
-        }
-
         public int CategoriaId { get; set; }
         public string Tipo { get; set; }
         public string Nombre { get; set; }

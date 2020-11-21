@@ -5,11 +5,6 @@ namespace StraviaTECCore.Models
 {
     public partial class Contactenos
     {
-        public Contactenos()
-        {
-        }
-
-
         public string Nombre { get; set; }
         public string Apellidos { get; set; }
         public string Email { get; set; }

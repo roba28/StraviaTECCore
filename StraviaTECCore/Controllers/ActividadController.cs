@@ -30,19 +30,44 @@ namespace StraviaTECCore.Controllers
                 try
                 {// se inicializa el  objeto actividad
 
+
                     Actividad actividad1 = new Actividad();
                     db.Actividad.Add(actividad1);
                     db.SaveChanges();
+                    
 
                     return Ok();
                 }
-                catch
+                catch(Exception e)
                 {
+                    Console.WriteLine(e);
                     return NotFound();
                 }
             }
         }
-      
+
+
+        [HttpGet]
+        public IActionResult get()
+        {
+            using (Straviatec_DBContext db = new Straviatec_DBContext())
+            {
+                try
+                {
+
+                    var search = db.Actividad.OrderByDescending(d => d.ActividadId).ToList();
+
+                    return Ok(search);
+                }
+                catch (Exception e)
+                {
+                    return NotFound(e);
+                }
+
+
+            }
+
+        }
 
     }
 }

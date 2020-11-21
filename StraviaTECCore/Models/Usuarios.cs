@@ -17,23 +17,6 @@ namespace StraviaTECCore.Models
             Inscripdepreto = new HashSet<Inscripdepreto>();
         }
 
-        public Usuarios(int usuarioId, string nombre, string apellido1, string apellido2, string nacionalidad, DateTime? fechaNacimiento, string cuentaBancaria, int? edad, string usuario, string contrasena, string rol, byte[] foto)
-        {
-            UsuarioId = usuarioId;
-            Nombre = nombre;
-            Apellido1 = apellido1;
-            Apellido2 = apellido2;
-            Nacionalidad = nacionalidad;
-            FechaNacimiento = fechaNacimiento;
-            CuentaBancaria = cuentaBancaria;
-            Edad = edad;
-            Usuario = usuario;
-            Contrasena = contrasena;
-            Rol = rol;
-            Foto = foto;
-          
-        }
-
         public int UsuarioId { get; set; }
         public string Nombre { get; set; }
         public string Apellido1 { get; set; }

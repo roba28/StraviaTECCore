@@ -41,7 +41,7 @@ namespace StraviaTECCore.Controllers
             {
                 try
                 {
-                    Categoria cat = new Categoria(categoria.CategoriaId, categoria.Tipo,categoria.Nombre);
+                    Categoria cat = new Categoria();
   
 
                     db.Categoria.Add(cat);

@@ -37,9 +37,10 @@ namespace StraviaTECCore.Controllers
                     db.SaveChanges();
                     return Ok("se ha registrado");
                 }
-                catch
+                catch(Exception e)
                 {
-                    return NotFound();
+                    throw new Exception(e.ToString());
+                    return BadRequest(e) ;
                 }
             }
         }
@@ -66,7 +67,30 @@ namespace StraviaTECCore.Controllers
                 }
                 catch (Exception e)
                 {
-                    return NotFound(e);
+                    throw new Exception(e.ToString());
+                }
+
+
+            }
+
+        }
+
+        [HttpGet]
+        public IActionResult get()
+        {
+            using (Straviatec_DBContext db = new Straviatec_DBContext())
+            {
+                try
+                {
+
+                    var search = db.Amigos.OrderByDescending(d => d.Id).ToList();
+
+                    return Ok(search);
+                }
+                catch (Exception e)
+                {
+                    throw new Exception(e.ToString());
+                    
                 }
 
 

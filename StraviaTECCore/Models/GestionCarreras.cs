@@ -12,9 +12,6 @@ namespace StraviaTECCore.Models
             Patrocinadoresporcarrera = new HashSet<Patrocinadoresporcarrera>();
         }
 
-       
-        
-
         public int CarreraId { get; set; }
         public int OrganizadorId { get; set; }
         public decimal? Costo { get; set; }

@@ -9,7 +9,29 @@ namespace StraviaTECCore.Models
         {
             Gruposprivadosporcarrera = new HashSet<Gruposprivadosporcarrera>();
             InscripDepCarrera = new HashSet<InscripDepCarrera>();
+            Patrocinadores = new HashSet<Patrocinadores>();
             Patrocinadoresporcarrera = new HashSet<Patrocinadoresporcarrera>();
+        }
+
+        public GestionCarreras(int carreraId, int organizadorId, decimal? costo, DateTime? fechaCarrera, string nombre, DateTime? inicioRecorrido, DateTime? finRecorrido, int categoriaId, string tipoactividad, bool? isprivado, string cuentabancaria, Categoria categoria, Usuarios organizador, ICollection<Gruposprivadosporcarrera> gruposprivadosporcarrera, ICollection<InscripDepCarrera> inscripDepCarrera, ICollection<Patrocinadores> patrocinadores, ICollection<Patrocinadoresporcarrera> patrocinadoresporcarrera)
+        {
+            CarreraId = carreraId;
+            OrganizadorId = organizadorId;
+            Costo = costo;
+            FechaCarrera = fechaCarrera;
+            Nombre = nombre;
+            InicioRecorrido = inicioRecorrido;
+            FinRecorrido = finRecorrido;
+            CategoriaId = categoriaId;
+            Tipoactividad = tipoactividad;
+            Isprivado = isprivado;
+            Cuentabancaria = cuentabancaria;
+            Categoria = categoria;
+            Organizador = organizador;
+            Gruposprivadosporcarrera = gruposprivadosporcarrera;
+            InscripDepCarrera = inscripDepCarrera;
+            Patrocinadores = patrocinadores;
+            Patrocinadoresporcarrera = patrocinadoresporcarrera;
         }
 
         public int CarreraId { get; set; }
@@ -28,6 +50,7 @@ namespace StraviaTECCore.Models
         public Usuarios Organizador { get; set; }
         public ICollection<Gruposprivadosporcarrera> Gruposprivadosporcarrera { get; set; }
         public ICollection<InscripDepCarrera> InscripDepCarrera { get; set; }
+        public ICollection<Patrocinadores> Patrocinadores { get; set; }
         public ICollection<Patrocinadoresporcarrera> Patrocinadoresporcarrera { get; set; }
     }
 }

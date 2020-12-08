@@ -7,6 +7,13 @@ using System.Threading.Tasks;
 using StraviaTECCore.Models;
 using System.Web.Http.Cors;
 
+
+/**
+ * Su función es insertar y controlar las actividades en los eventos respectivos 
+ *
+ * @version 1.2, 21/11/2020
+ * @author Ronny barahona, Jonathan García, Roger Mora
+ */
 namespace StraviaTECCore.Controllers
 {
     [Route("api/[controller]")]
@@ -14,7 +21,12 @@ namespace StraviaTECCore.Controllers
     public class gestionactividadController : ControllerBase
     {
 
-       
+        /** 
+    
+         * @param Objeto de tipo Amigo  que  almacena  los datos del nuevo amigo
+         * 
+             
+          */
         [HttpGet]
         public IActionResult getgestionactividad()
         {

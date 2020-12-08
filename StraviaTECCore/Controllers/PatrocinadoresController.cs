@@ -6,6 +6,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
+
+/**
+ * Esta  es una clase  que se encarga de gestionar las incripciones de  los patrocinadores  de la pagina web 
+ * @version 1.2, 21/11/2020
+ * @author Ronny barahona, Jonathan García, Roger Mora
+ */
+
 namespace StraviaTECCore.Controllers
 {
     [Route("api/[controller]")]
@@ -14,7 +21,11 @@ namespace StraviaTECCore.Controllers
     {
 
 
-        //Utilizado para obtener todos los patrocinadores 
+        /**
+         *Utilizado para obtener todos los patrocinadores 
+         
+         */
+
         [HttpGet]
         public IActionResult get()
         {

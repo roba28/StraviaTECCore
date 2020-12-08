@@ -8,6 +8,11 @@ using StraviaTECCore.Models;
 using System.Web.Http.Cors;
 
 
+/**
+ * Esta  es una clase  que se encarga de gestionar las incripciones de  los patrocinadores por  carrera al evento 
+ * @version 1.2, 21/11/2020
+ * @author Ronny barahona, Jonathan García, Roger Mora
+ */
 namespace StraviaTECCore.Controllers
 {
     [Route("api/[controller]")]

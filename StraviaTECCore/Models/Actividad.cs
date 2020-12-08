@@ -21,3 +21,4 @@ namespace StraviaTECCore.Models
         public Usuarios Usuario { get; set; }
     }
 }
+ 

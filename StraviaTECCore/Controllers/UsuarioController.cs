@@ -8,17 +8,22 @@ using StraviaTECCore.Models;
 using System.Web.Http.Cors;
 
 namespace StraviaTECCore.Controllers
-
-    // creacion de la ruta con la que el  webservice se expondra para ser consumido 
-    //Dependiendo del metodo de consumo se dirigira a cada una de las funciones.
-{
+/**
+* 
+* se encarga de la creacion de la ruta con la que el  webservice se expondra para ser consumido 
+  Dependiendo del metodo de consumo se dirigira a cada una de las funciones.
+* @version 1.2, 21/11/2020
+* @author Ronny barahona, Jonathan García, Roger Mora
+*/
     [Route("api/[controller]")]
     [ApiController]
     public class UsuarioController : ControllerBase
     {
 
-
-        // Metodo utilizado para obtener toodos los usuarios de la base de datos 
+/*
+ * Metodo utilizado para obtener todos los usuarios de la base de datos 
+ *@return lista de usuarios asignados.
+ */
         [HttpGet]
         public IActionResult getuser() {
 
@@ -38,6 +43,10 @@ namespace StraviaTECCore.Controllers
             }
         }
 
+    /**
+     * Método que devuelve busca un usuario po el nombre  en caso de encontralo lo lo retorna, en caso contrario, mensaje de  error.
+     * @ param String name nombre  que proviene de la solicitud de la pagina web
+     */
 
         [HttpGet("get/{name}")]
         public IActionResult getuserbyname(string name)

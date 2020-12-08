@@ -8,8 +8,11 @@ using System.Threading.Tasks;
 using StraviaTECCore.Models;
 using System.Web.Http.Cors;
 
-// For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-
+/**
+ * Esta Clase  que se encarga de gestionar  registrar y modificar las  los amigos de los usuarios retgistrados registrados
+ * @version 1.2, 21/11/2020
+ * @author Ronny barahona, Jonathan García,Roger Mora
+ */
 namespace StraviaTECCore.Controllers
 {
     [Route("api/[controller]")]
@@ -18,6 +21,13 @@ namespace StraviaTECCore.Controllers
     {
 
 
+        /** 
+        * Recibe de la  aplicación web   mediante  el modelo de  un amigos, un objeto de los dato un usuario que registra como Amigos del usuario
+        * 
+        * @param Objeto de tipo Amigo  que  almacena  los datos del nuevo amigo
+        * 
+            
+         */
         [HttpPost]
         public IActionResult addFriend(Amigos nuevoAmigo)
         {
@@ -47,11 +57,16 @@ namespace StraviaTECCore.Controllers
 
 
 
-        /// nuevo metodo de  añadir amigos 
-        /// 
+
+        /** 
+       * Recibe de la  aplicación web   mediante  el modelo de  un amigos, un objeto de los dato un usuario que registra como Amigos del usuario
+       * 
+       * @param Objeto de tipo Amigo  que  almacena  los datos del nuevo amigo
+       * 
+           
+        */
 
 
-        //obtener amigo por el id
 
         [HttpGet("find/{id}")]
         public IActionResult getFriend(int usuario)
@@ -74,6 +89,12 @@ namespace StraviaTECCore.Controllers
             }
 
         }
+
+     /** 
+     * Se encarga en enviar  a la pagina we los amigos del usuario.
+     * @return listado de amigos 
+     *  
+      */
 
         [HttpGet]
         public IActionResult get()
@@ -99,7 +120,11 @@ namespace StraviaTECCore.Controllers
         }
 
 
-
+        /**
+         * recibe de la pagina web el id del  amigo al que desea eliminar de la base de datos.
+         *@param int id identidicador del amigo que voy a eliminar 
+         */
+            
 
         [HttpDelete("del/{id}")]
         public ActionResult deleteuser(int id)

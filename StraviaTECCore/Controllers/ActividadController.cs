@@ -8,6 +8,11 @@ using System.Threading.Tasks;
 using StraviaTECCore.Models;
 using System.Web.Http.Cors;
 
+/**
+ * Esta  es una clase  que se encarga de gestionar  registrar y modificar las actividades de los usuarios registrados
+ * @version 1.2, 21/11/2020
+ * @author Ronny barahona, Jonathan García, Roger Mora
+ */
 
 namespace StraviaTECCore.Controllers
 {
@@ -17,8 +22,11 @@ namespace StraviaTECCore.Controllers
     {
 
 
-
-        // este metodo toma los dato  un usuario  que  registra una actividad desde la web
+     /** 
+     * Recibe de la  aplicación web   mediante  el modelo de  una actividad
+     * @param Actividad actividad un objetio que almacenqa todos los datpos referentes a una actividad
+     * Este metodo toma los dato  un usuario  que  registra una actividad desde la web   
+      */
 
         [HttpPost]
 
@@ -46,6 +54,11 @@ namespace StraviaTECCore.Controllers
             }
         }
 
+  /** 
+* Se encarta de enviar las actividades  insertadas en la base  de datos 
+* @return lista de actividades
+* 
+  */
 
         [HttpGet]
         public IActionResult get()

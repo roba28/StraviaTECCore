@@ -6,6 +6,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
+
+/**
+ * Esta  es una clase  que se encarga de gestionar las incripciones de  los usuarios a los  retos. 
+ * @version 1.2, 21/11/2020
+ * @author Ronny barahona, Jonathan García, Roger Mora
+ */
+
 namespace StraviaTECCore.Controllers
 {
     [Route("api/[controller]")]
@@ -13,7 +20,10 @@ namespace StraviaTECCore.Controllers
     public class InscripdepretoController : ControllerBase
     {
 
-        //Utilizado para obtener todos los retos de un deportista 
+        /**
+         * Utilizado para obtener todos los retos de un deportista 
+         * @return  lista de retos inscritos 
+         */
         [HttpGet]
         public IActionResult get()
         {
@@ -34,7 +44,10 @@ namespace StraviaTECCore.Controllers
         }
 
 
-        //Utilizado para ingresar retos  de un deportista 
+        /**Utilizado para ingresar retos  de un deportista
+         * @param  Inscripdepreto pa se obtienen los objetos de las personas inscrita a un reto  y se insertan 
+         *
+         */
         [HttpPost]
         public IActionResult post(Inscripdepreto pa)
         {
@@ -67,6 +80,10 @@ namespace StraviaTECCore.Controllers
 
         }
 
+        /**
+        * Se borra   inscripción de un usuario a un reto
+        * @param  int id  idenficador  del usuario que va a cancerlar la inscripción
+        */
 
 
 

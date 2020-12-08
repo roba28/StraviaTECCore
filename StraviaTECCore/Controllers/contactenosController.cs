@@ -6,6 +6,13 @@ using System.Linq;
 using System.Threading.Tasks;
 using StraviaTECCore.Models;
 using System.Web.Http.Cors;
+
+/**
+ * Se manejan los datop de la base de datos que tienen relación con la informacion de contacto de la base de datos 
+ *
+ * @version 1.2, 21/11/2020
+ * @author Ronny barahona, Jonathan García, Roger Mora
+ */
 namespace StraviaTECCore.Controllers
 {
     [Route("api/[controller]")]

@@ -6,6 +6,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
+
+/**
+ * Esta  es una clase  que se encarga de gestionar  lo concerniente los grupos pruvados por carrera 
+ * @version 1.2, 21/11/2020
+ * @author Ronny barahona, Jonathan García, Roger Mora
+ */
 namespace StraviaTECCore.Controllers
 {
     [Route("api/[controller]")]
@@ -13,7 +19,10 @@ namespace StraviaTECCore.Controllers
     public class GruposprivadosporcarreraController : ControllerBase
     {
 
-        // Metodo utilizado para obtener toodos los grupos que pueden acceder a los diferentes retos 
+        /**
+         * Metodo que  retorna   todas la carreras registradas en grupos  privados
+         * @return Listado de carreras por grupos privados en la pagina web
+         */
         [HttpGet]
         public IActionResult get()
         {
@@ -97,10 +106,10 @@ namespace StraviaTECCore.Controllers
         }
 
 
-
-        //---------------------------------------------------------------------
-        //// Metodo utilizado para crear toodos los grupos que pueden acceder a los diferentes retos 
-
+        /**
+                 * Este método post se encarga de realizar una inserción de una  carrera por grupo privado
+                 * @param Gruposprivadosporcarrera grupo  recibe la carrera, el grupo al que va a pertener la carrera.
+                 */
         [HttpPost]
 
         public IActionResult add(Gruposprivadosporcarrera grupo)
@@ -111,14 +120,10 @@ namespace StraviaTECCore.Controllers
             {
                 try
                 {
-
                     Gruposprivadosporcarrera grup = new Gruposprivadosporcarrera();
-
                     grup.Id = grupo.Id;
                     grup.Carreraid = grupo.Carreraid;
                     grup.Gestiongruposid = grupo.Gestiongruposid;
-
-
                     db.Gruposprivadosporcarrera.Add(grup);
                     db.SaveChanges();
 

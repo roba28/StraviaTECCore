@@ -6,6 +6,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
+
+/**
+ * La función de esta cals es mediante la gestioj de carreras  poder asígnar  los grupos privados de la carrera
+ * 
+ * @version 1.2, 21/11/2020
+ * @author Ronny barahona, Jonathan García, Roger Mora
+ */
 namespace StraviaTECCore.Controllers
 {
     [Route("api/[controller]")]
@@ -13,8 +20,13 @@ namespace StraviaTECCore.Controllers
     public class GruposprivadosporretoController : ControllerBase
     {
 
-        // Metodo utilizado para obtener toodos los grupos que pueden acceder a los diferentes retos 
+       /**
+        *
+        *Metodo utilizado para obtener toodos los grupos que pueden acceder a las diferentes  tipos de carreras
+         @return  lista de carreras asignadas a los diferentes grupos privados 
+        */
         [HttpGet]
+       
         public IActionResult get()
         {
 
